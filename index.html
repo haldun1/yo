@@ -426,11 +426,33 @@
             text-align: center;
             padding: 60px 20px;
             color: #666;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
 
         .empty-state h3 {
             font-size: 1.5rem;
             margin-bottom: 8px;
+            color: #000;
+        }
+
+        .empty-state p {
+            margin-bottom: 12px;
+        }
+
+        .help-text {
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 50px;
+            text-align: center;
+            color: #666;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .help-text strong {
             color: #000;
         }
 
@@ -563,7 +585,8 @@
     <div class="pages-container" id="pagesContainer">
         <div class="empty-state" id="emptyState">
             <h3>No pages yet</h3>
-            <p>Add your first page to get started</p>
+            <p>Click the <strong>+</strong> button to add your first page</p>
+            <p>Or try the <strong>⋯</strong> menu for ready-made templates</p>
         </div>
     </div>
 </div>
@@ -591,17 +614,17 @@
         <div class="modal-header">Animation</div>
         <div class="option-buttons" id="animationOptions">
             <div class="option-btn" data-animation="instant">Instant</div>
+            <div class="option-btn" data-animation="pulse">Pulse</div>
+            <div class="option-btn" data-animation="flash">Flash</div>
+            <div class="option-btn" data-animation="shake">Shake</div>
             <div class="option-btn" data-animation="fade-in">Fade In</div>
+            <div class="option-btn" data-animation="wipe">Wipe</div>
             <div class="option-btn" data-animation="slide-left">Slide Left</div>
             <div class="option-btn" data-animation="slide-right">Slide Right</div>
             <div class="option-btn" data-animation="slide-up">Slide Up</div>
             <div class="option-btn" data-animation="slide-down">Slide Down</div>
             <div class="option-btn" data-animation="zoom-in">Zoom In</div>
-            <div class="option-btn" data-animation="pulse">Pulse</div>
-            <div class="option-btn" data-animation="shake">Shake</div>
-            <div class="option-btn" data-animation="wipe">Wipe</div>
             <div class="option-btn" data-animation="drop">Drop In</div>
-            <div class="option-btn" data-animation="flash">Flash</div>
         </div>
     </div>
 </div>
@@ -781,7 +804,7 @@
                 templatePages = [
                     {
                         id: Date.now(),
-                        text: 'LOOKING FOR',
+                        text: 'PICKING UP',
                         fontFamily: 'Arial Black, sans-serif',
                         textColor: '#000000',
                         backgroundColor: '#ffffff',
@@ -900,20 +923,20 @@
                 templatePages = [
                     {
                         id: Date.now(),
-                        text: 'SLOW',
+                        text: 'SLOW\nDOWN',
                         fontFamily: 'Arial Black, sans-serif',
                         textColor: '#000000',
                         backgroundColor: '#eab308',
-                        animation: 'pulse',
-                        duration: 1
+                        animation: 'instant',
+                        duration: 3
                     },
                     {
                         id: Date.now() + 1,
-                        text: 'DOWN',
+                        text: 'SLOW\nDOWN',
                         fontFamily: 'Arial Black, sans-serif',
-                        textColor: '#ffffff',
-                        backgroundColor: '#ef4444',
-                        animation: 'pulse',
+                        textColor: '#000000',
+                        backgroundColor: '#eab308',
+                        animation: 'flash',
                         duration: 2
                     }
                 ];
@@ -966,11 +989,25 @@
         const container = document.getElementById('pagesContainer');
 
         if (pages.length === 0) {
-            container.innerHTML = '<div class="empty-state"><h3>No pages yet</h3><p>Add your first page to get started</p></div>';
+            container.innerHTML = `
+                <div class="empty-state">
+                    <h3>No pages yet</h3>
+                    <p>Click the <strong>+</strong> button to add your first page</p>
+                    <p>Or try the <strong>⋯</strong> menu for ready-made templates</p>
+                </div>
+            `;
             return;
         }
 
-        container.innerHTML = pages.map((page, index) => createPageHTML(page, index)).join('');
+        const pagesHTML = pages.map((page, index) => createPageHTML(page, index)).join('');
+        const helpHTML = `
+            <div class="help-text">
+                <strong>💡 Quick Tips:</strong><br><br>
+                Tap a page to edit its text<br>Tap ⚙ to customize colors & animations<br>Hit ▶ to play fullscreen
+            </div>
+        `;
+
+        container.innerHTML = pagesHTML + helpHTML;
         attachPageEventListeners();
     }
 
