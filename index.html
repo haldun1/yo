@@ -76,16 +76,78 @@
             color: #fff;
         }
 
-        .btn-add {
+        .btn-split {
+            display: flex;
+            border: 2px solid #000;
+            border-radius: 50px;
+            overflow: hidden;
+            transition: all 0.2s ease;
+        }
+
+        .btn-split:hover {
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .btn-split-main {
             width: 50px;
             height: 50px;
             font-size: 1.5rem;
+            font-weight: 700;
+            cursor: pointer;
+            background: #fff;
+            color: #000;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            border-right: 1px solid #000;
+        }
+
+        .btn-split-main:hover {
+            background: #64cf4e;
+            color: #fff;
+        }
+
+        .btn-split-dropdown {
+            width: 50px;
+            height: 50px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            background: #fff;
+            color: #000;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        .btn-split-dropdown:hover {
+            background: #64cf4e;
+            color: #fff;
         }
 
         .btn-play {
             width: 50px;
             height: 50px;
             font-size: 1.2rem;
+        }
+        
+        .btn-play:hover {
+            background: #0095ff;
+            color: #fff;
+        }
+
+        .btn-clear {
+            width: 50px;
+            height: 50px;
+            font-size: 1.2rem;
+        }
+        
+        .btn-clear:hover {
+            background: #ff4d4d;
+            color: #fff;
         }
 
         .btn-menu {
@@ -109,8 +171,7 @@
             border-radius: 12px;
             z-index: 1000;
             top: 60px;
-            left: 50%;
-            transform: translateX(-50%);
+            right: 0;
         }
 
         .dropdown-content.show {
@@ -213,7 +274,7 @@
             display: flex;
             align-items: center;
             gap: 6px;
-            background: rgba(255,255,255,0.9);
+            background: rgba(242, 242, 242, 0.9);
             border-radius: 24px;
             padding: 6px;
             transition: all 0.2s ease;
@@ -224,6 +285,7 @@
             width: 48px;
             height: 48px;
             justify-content: center;
+            background: transparent;
         }
 
         .page-controls.collapsed .control-btn:not(.toggle-btn) {
@@ -250,8 +312,16 @@
         }
 
         .control-btn.toggle-btn {
-            background: #000;
+            background: rgba(0, 0, 0, 0.24);
             color: white;
+        }
+        
+        .control-btn.warning{
+            background: rgba(255, 0, 0, 0);
+        }
+        
+        .control-btn.warning:hover{
+            background: rgba(255, 0, 0, 0.24);
         }
 
         .page-order-controls {
@@ -566,10 +636,13 @@
     </div>
 
     <div class="controls">
-        <button class="btn btn-add" onclick="addPage()" title="Add Page">+</button>
+        <div class="btn-split">
+            <button class="btn-split-main" onclick="addPage()" title="Add Page">+</button>
+            <button class="btn-split-dropdown" onclick="toggleDropdown()" title="Templates">✧</button>
+        </div>
         <button class="btn btn-play" onclick="startDisplay()" title="Play">▶</button>
+        <button class="btn btn-clear" onclick="clearAllPages()" title="Clear All">🗙</button>
         <div class="dropdown">
-            <button class="btn btn-menu" onclick="toggleDropdown()" title="Menu">⋯</button>
             <div class="dropdown-content" id="dropdown">
                 <div class="dropdown-item" onclick="selectTemplate('airport')">✈️ Airport Meeting</div>
                 <div class="dropdown-item" onclick="selectTemplate('emergency')">🚨 Emergency</div>
@@ -578,7 +651,10 @@
                 <div class="dropdown-item" onclick="selectTemplate('meeting')">🏢 Meeting Room</div>
                 <div class="dropdown-item" onclick="selectTemplate('slowdown')">🚗 Slow Down</div>
                 <div class="dropdown-item" onclick="selectTemplate('accident')">⚠️ Accident Ahead</div>
-                <div class="dropdown-item danger" onclick="clearAllPages()">🗑️ Clear All</div>
+                <div class="dropdown-item" onclick="selectTemplate('protest')">📢 Protest Sign</div>
+                <div class="dropdown-item" onclick="selectTemplate('sports')">🏆 Go Team</div>
+                <div class="dropdown-item" onclick="selectTemplate('onAir')">🎤 On Air</div>
+                <div class="dropdown-item" onclick="selectTemplate('brb')">🕒 Be right back</div>
             </div>
         </div>
     </div>
@@ -687,17 +763,6 @@
             <div class="option-btn" data-duration="4">4s</div>
             <div class="option-btn" data-duration="5">5s</div>
             <div class="option-btn" data-duration="10">10s</div>
-        </div>
-    </div>
-</div>
-
-<div class="modal" id="moreModal">
-    <div class="modal-content">
-        <button class="close-btn" onclick="closeModal('moreModal')">&times;</button>
-        <div class="modal-header">More Options</div>
-        <div class="option-buttons">
-            <div class="option-btn" onclick="duplicatePage(currentPageId); closeModal('moreModal')">Duplicate</div>
-            <div class="option-btn" onclick="deletePage(currentPageId); closeModal('moreModal')" style="background: #ef4444; color: white;">Delete</div>
         </div>
     </div>
 </div>
@@ -964,6 +1029,103 @@
                     }
                 ];
                 break;
+            case 'protest':
+                templatePages = [
+                    {
+                        id: Date.now(),
+                        text: 'CHANGE',
+                        fontFamily: 'Arial Black, sans-serif',
+                        textColor: '#ffffff',
+                        backgroundColor: '#000000',
+                        animation: 'drop',
+                        duration: 1
+                    },
+                    {
+                        id: Date.now() + 1,
+                        text: 'NOW!',
+                        fontFamily: 'Arial Black, sans-serif',
+                        textColor: '#000000',
+                        backgroundColor: '#ffffff',
+                        animation: 'drop',
+                        duration: 1
+                    }
+                ];
+                break;
+            case 'sports':
+                templatePages = [
+                    {
+                        id: Date.now(),
+                        text: 'LET\'S',
+                        fontFamily: 'Arial Black, sans-serif',
+                        textColor: '#000000',
+                        backgroundColor: '#ffffff',
+                        animation: 'instant',
+                        duration: 0.5
+                    },
+                    {
+                        id: Date.now() + 1,
+                        text: 'GO',
+                        fontFamily: 'Arial Black, sans-serif',
+                        textColor: '#000000',
+                        backgroundColor: '#ffffff',
+                        animation: 'instant',
+                        duration: 0.5
+                    },
+                    {
+                        id: Date.now() + 2,
+                        text: '🏆\nTEAM!',
+                        fontFamily: 'Arial Black, sans-serif',
+                        textColor: '#000000',
+                        backgroundColor: '#eab308',
+                        animation: 'shake',
+                        duration: 1
+                    }
+                ];
+                break;
+            case 'onAir':
+                templatePages = [
+                    {
+                        id: Date.now(),
+                        text: 'ON AIR',
+                        fontFamily: 'Arial Black, sans-serif',
+                        textColor: '#ffffff',
+                        backgroundColor: '#ef4444',
+                        animation: 'pulse',
+                        duration: 2
+                    },
+                    {
+                        id: Date.now() + 1,
+                        text: '🤫\nQUIET',
+                        fontFamily: 'Arial Black, sans-serif',
+                        textColor: '#ffffff',
+                        backgroundColor: '#000000',
+                        animation: 'flash',
+                        duration: 2
+                    }
+                ];
+                break;
+            case 'brb':
+                templatePages = [
+                    {
+                        id: Date.now(),
+                        text: 'Be Right\nBack',
+                        fontFamily: 'Arial Black, sans-serif',
+                        textColor: '#ffffff',
+                        backgroundColor: '#3b82f6',
+                        animation: 'fade-in',
+                        duration: 5
+                    },
+                    {
+                        id: Date.now() + 1,
+                        text: '🏃‍♂️💨',
+                        fontFamily: 'Arial Black, sans-serif',
+                        textColor: '#ffffff',
+                        backgroundColor: '#000000',
+                        animation: 'slide-right',
+                        duration: 2
+                    }
+                ];
+                break;
         }
 
         pages = templatePages;
@@ -978,7 +1140,7 @@
 
     // Close dropdown when clicking outside
     window.onclick = function(event) {
-        if (!event.target.matches('.btn-menu')) {
+        if (!event.target.matches('.btn-split-dropdown')) {
             const dropdown = document.getElementById('dropdown');
             if (dropdown.classList.contains('show')) {
                 dropdown.classList.remove('show');
@@ -994,7 +1156,7 @@
                 <div class="empty-state">
                     <h3>No pages yet</h3>
                     <p>Click the <strong>+</strong> button to add your first page</p>
-                    <p>Or try the <strong>⋯</strong> menu for ready-made templates</p>
+                    <p>Or try the <strong>✧</strong> button for ready-made templates</p>
                 </div>
             `;
             return;
@@ -1004,7 +1166,7 @@
         const helpHTML = `
             <div class="help-text">
                 <strong>💡 Quick Tips:</strong><br><br>
-                Tap a page to edit its text<br>Tap ⚙ to customize colors & animations<br>Hit ▶ to play fullscreen
+                Tap a page to edit its text<br>Tap <b>(…)</b> to customize colors & animations<br>Hit ▶ to play fullscreen
             </div>
         `;
 
@@ -1025,12 +1187,13 @@
                 <div class="page-preview" style="font-family: ${page.fontFamily}; color: ${page.textColor}; background: ${page.backgroundColor};">
                     <textarea class="page-text" data-page-id="${page.id}" placeholder="Enter text..." spellcheck="false">${page.text}</textarea>
                     <div class="page-controls collapsed" id="controls-${page.id}">
-                        <div class="control-btn toggle-btn" onclick="toggleControls(${page.id})" title="Controls">⚙</div>
                         <div class="control-btn" onclick="openModal('fontModal', ${page.id})" title="Font">A</div>
                         <div class="control-btn" onclick="openModal('animationModal', ${page.id})" title="Animation">⚡</div>
                         <div class="control-btn" onclick="openModal('colorModal', ${page.id})" title="Colors">🎨</div>
-                        <div class="control-btn" onclick="openModal('durationModal', ${page.id})" title="Duration">⏱</div>
-                        <div class="control-btn" onclick="openModal('moreModal', ${page.id})" title="More">⋯</div>
+                        <div class="control-btn" onclick="openModal('durationModal', ${page.id})" title="Duration">⏳</div>
+                        <div class="control-btn" onclick="duplicatePage(${page.id})" title="Duplicate">⧉</div>
+                        <div class="control-btn warning" onclick="deletePage(${page.id})" title="Delete">🗑️</div>
+                        <div class="control-btn toggle-btn" onclick="toggleControls(${page.id})" title="Controls">…</div>
                     </div>
                 </div>
             </div>
@@ -1159,7 +1322,7 @@
             page[field] = value;
             savePages();
             if (field !== 'text') {
-                renderPages(); // Re-render for style changes
+                renderPages();
             }
         }
     }
@@ -1169,7 +1332,6 @@
         const modal = document.getElementById(modalId);
         modal.classList.add('show');
 
-        // Update selected states
         updateModalSelections(modalId, pageId);
     }
 
