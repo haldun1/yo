@@ -5,14 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yo!</title>
 
-    <!-- PWA Meta Tags -->
     <meta name="theme-color" content="#000000">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Yo!">
     <meta name="description" content="Get attention from far away - Perfect for airports, emergencies, and distance communication">
 
-    <!-- Web App Manifest -->
     <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIkF5ZSwgWW8hIiwKICAic2hvcnRfbmFtZSI6ICJBeWUsIFlvISIsCiAgImRlc2NyaXB0aW9uIjogIkdldCBhdHRlbnRpb24gZnJvbSBmYXIgYXdheSAtIFBlcmZlY3QgZm9yIGFpcnBvcnRzLCBlbWVyZ2VuY2llcywgYW5kIGRpc3RhbmNlIGNvbW11bmljYXRpb24iLAogICJzdGFydF91cmwiOiAiLyIsCiAgImRpc3BsYXkiOiAic3RhbmRhbG9uZSIsCiAgInRoZW1lX2NvbG9yIjogIiMwMDAwMDAiLAogICJiYWNrZ3JvdW5kX2NvbG9yIjogIiMwMDAwMDAiLAogICJvcmllbnRhdGlvbiI6ICJwb3J0cmFpdC1wcmltYXJ5IiwKICAiaWNvbnMiOiBbCiAgICB7CiAgICAgICJzcmMiOiAiZGF0YTppbWFnZS9zdmcreG1sO2Jhc2U2NCxQSE4yWnlCM2FXUjBhRDBpTVRJNElpQm9aV2xuYUhROUlqRXlPQ0lnZG1sbGQwSnZlRDBpTUNBd0lERXlPQ0F4TWpnaUlIaHRiRzV6UFNKb2RIUndPaTh2ZDNkM0xuY3pMbTl5Wnk4eU1EQXdMM04yWnlJK1BISmxZM1FnZUQwaU1TSWdlVDBpTVNJZ2QybGtkR2c5SWpFeU5pSWdhR1ZwWjJoMFBTSXhNall5SUdacGJHdzlJaU0yTmpkbFpXRWlMejQ4ZEdWNGRDQjRQU0kyTkNJZ2VUMGlOalFpSUdacGJHdzlJaU0zTWpZeUlpQm1iMjUwTFhOcGVtVTlJalEwSWlCbWIyNTBMWGRsYVdkb2REMGlPVEF3SWlCMFpYaDBMV0Z1WTJodmNqMGliV2xrWkd4bElpQmtiMjFwYm1GdWRDMWlZWE5sYkdsdVpUMGlZMlZ1ZEdWeUlqNUJaUzQ4TDNSbGVIUStQSFJsZUhRZ2VEMGlOalFpSUhrOUlqazFJaUJtYVd4c1BTSWpOekkyTWlJZ1ptOXVkQzF6YVhwbFBTSXpNaUlnWm05dWRDMTNaV2xuYUhROUlqZ3dNQ0lnZEdWNGRDMWhibU5vYjNJOUltMXBaR1JzWlNJZ1pHOXRhVzVoYm5RdFltRnpaV3hwYm1VOUltTmxiblJsY2lJK1dXOGhQQzl0WlhoMFBqd3ZjM1puUGc9PSIsCiAgICAgICJ0eXBlIjogImltYWdlL3N2Zyt4bWwiLAogICAgICAic2l6ZXMiOiAiMTI4eDEyOCIKICAgIH0KICBdLAogICJjYXRlZ29yaWVzIjogWyJ1dGlsaXRpZXMiLCAicHJvZHVjdGl2aXR5Il0sCiAgImxhbmciOiAiZW4iCn0K">
 
     <style>
@@ -133,7 +131,7 @@
             height: 50px;
             font-size: 1.2rem;
         }
-        
+
         .btn-play:hover {
             background: #0095ff;
             color: #fff;
@@ -144,18 +142,12 @@
             height: 50px;
             font-size: 1.2rem;
         }
-        
+
         .btn-clear:hover {
             background: #ff4d4d;
             color: #fff;
         }
-
-        .btn-menu {
-            width: 50px;
-            height: 50px;
-            font-size: 1.2rem;
-        }
-
+        
         .dropdown {
             position: relative;
             display: inline-block;
@@ -211,7 +203,6 @@
 
         .page-item {
             position: relative;
-            aspect-ratio: 16/9;
             border-radius: 12px;
             overflow: hidden;
             transition: all 0.2s ease;
@@ -249,7 +240,6 @@
             background: transparent;
             border: none;
             outline: none;
-            resize: none;
             font-family: inherit;
             font-weight: inherit;
             font-size: inherit;
@@ -265,16 +255,17 @@
             top: 0;
             left: 0;
             padding: 5%;
+            cursor: text;
         }
 
         .page-controls {
             position: absolute;
-            bottom: 12px;
+            top: 12px;
             right: 12px;
             display: flex;
             align-items: center;
             gap: 6px;
-            background: rgba(242, 242, 242, 0.9);
+            background: rgba(242, 242, 242, 1);
             border-radius: 24px;
             padding: 6px;
             transition: all 0.2s ease;
@@ -292,6 +283,10 @@
             display: none;
         }
 
+        .page-controls.collapsed .control-separator {
+            display: none;
+        }
+
         .control-btn {
             width: 36px;
             height: 36px;
@@ -305,6 +300,7 @@
             align-items: center;
             justify-content: center;
             transition: all 0.2s ease;
+            flex-shrink: 0;
         }
 
         .control-btn:hover {
@@ -312,54 +308,37 @@
         }
 
         .control-btn.toggle-btn {
-            background: rgba(0, 0, 0, 0.24);
-            color: white;
-        }
-        
-        .control-btn.warning{
-            background: rgba(255, 0, 0, 0);
-        }
-        
-        .control-btn.warning:hover{
-            background: rgba(255, 0, 0, 0.24);
+            background: rgba(255, 255, 255, 0.36);
+            color: black;
+            font-family: 'Arial Black', Arial, sans-serif;
+            font-size: 80%;
         }
 
-        .page-order-controls {
-            position: absolute;
-            top: 8px;
-            right: 8px;
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-            background: rgba(255,255,255,0.9);
-            border-radius: 8px;
-            padding: 4px;
+        .control-btn.order-btn {
+            font-size: 14px;
         }
 
-        .order-btn {
-            width: 24px;
-            height: 20px;
-            border: none;
-            background: transparent;
-            color: #000;
-            font-size: 12px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 4px;
-            transition: all 0.2s ease;
-        }
-
-        .order-btn:hover {
-            background: rgba(0,0,0,0.1);
-        }
-
-        .order-btn:disabled {
+        .control-btn.order-btn:disabled {
             opacity: 0.3;
             cursor: not-allowed;
         }
 
+        .control-btn.warning{
+            background: rgba(255, 0, 0, 0);
+        }
+
+        .control-btn.warning:hover{
+            background: rgba(255, 0, 0, 0.24);
+        }
+
+        .control-separator {
+            width: 1px;
+            height: 20px;
+            background-color: rgba(0,0,0,0.2);
+            margin: 0 2px;
+            flex-shrink: 0; /* Prevent separator from shrinking */
+        }
+        
         .modal {
             display: none;
             position: fixed;
@@ -436,6 +415,7 @@
         }
 
         .color-option:hover,
+        
         .color-option.selected {
             border-color: #000;
             transform: scale(1.1);
@@ -486,6 +466,7 @@
         }
 
         .option-btn:hover,
+        
         .option-btn.selected {
             background: #000;
             color: #fff;
@@ -641,7 +622,7 @@
             <button class="btn-split-dropdown" onclick="toggleDropdown()" title="Templates">✧</button>
         </div>
         <button class="btn btn-play" onclick="startDisplay()" title="Play">▶</button>
-        <button class="btn btn-clear" onclick="clearAllPages()" title="Clear All">🗙</button>
+        <button class="btn btn-clear" onclick="clearAllPages()" title="Clear All">✕</button>
         <div class="dropdown">
             <div class="dropdown-content" id="dropdown">
                 <div class="dropdown-item" onclick="selectTemplate('emergency')">🚨 Emergency</div>
@@ -668,7 +649,6 @@
     </div>
 </div>
 
-<!-- Modals -->
 <div class="modal" id="fontModal">
     <div class="modal-content">
         <button class="close-btn" onclick="closeModal('fontModal')">&times;</button>
@@ -774,22 +754,21 @@
     let displayInterval = null;
     let isPlaying = false;
 
-    // Load saved pages on startup
     document.addEventListener('DOMContentLoaded', function() {
         loadPages();
         renderPages();
         registerServiceWorker();
+        updatePreviewAspectRatio();
 
         // Set up resize handlers
         handleResize();
     });
 
-    // Register Service Worker for PWA functionality
     function registerServiceWorker() {
         if ('serviceWorker' in navigator) {
             const swCode = `
-                const CACHE_NAME = 'yo-v3';
-                const urlsToCache = ['/'];
+                const CACHE_NAME = 'yo-v3'; // Updated cache name if needed
+                const urlsToCache = ['/']; // Cache the root
                 self.addEventListener('install', function(event) {
                     event.waitUntil(caches.open(CACHE_NAME).then(function(cache) {
                         return cache.addAll(urlsToCache);
@@ -803,7 +782,9 @@
             `;
             const blob = new Blob([swCode], { type: 'application/javascript' });
             const swUrl = URL.createObjectURL(blob);
-            navigator.serviceWorker.register(swUrl);
+            navigator.serviceWorker.register(swUrl)
+                .then(registration => console.log('ServiceWorker registration successful with scope: ', registration.scope))
+                .catch(error => console.log('ServiceWorker registration failed: ', error));
         }
     }
 
@@ -834,15 +815,28 @@
     }
 
     function deletePage(id) {
-        pages = pages.filter(page => page.id !== id);
-        savePages();
-        renderPages();
+        // Find the page element to remove it visually first for smoother UX
+        const pageElement = document.querySelector(`.page-item[data-page-id="${id}"]`);
+        if (pageElement) {
+            pageElement.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+            pageElement.style.opacity = '0';
+            pageElement.style.transform = 'scale(0.9)';
+            setTimeout(() => {
+                pages = pages.filter(page => page.id !== id);
+                savePages();
+                renderPages(); // Re-render to update indices and buttons
+            }, 300);
+        } else { // Fallback if element not found (should not happen)
+            pages = pages.filter(page => page.id !== id);
+            savePages();
+            renderPages();
+        }
     }
 
     function duplicatePage(id) {
         const page = pages.find(p => p.id === id);
         if (page) {
-            const duplicate = { ...page, id: Date.now() };
+            const duplicate = { ...page, id: Date.now() }; // Ensure new unique ID
             const index = pages.findIndex(p => p.id === id);
             pages.splice(index + 1, 0, duplicate);
             savePages();
@@ -851,12 +845,21 @@
     }
 
     function clearAllPages() {
-        if (confirm('Clear all pages? This cannot be undone.')) {
+        // Using a custom modal for confirmation is better, but for now, window.confirm
+        // For a real app, replace with a styled modal.
+        const userConfirmed = window.confirm('Clear all pages? This cannot be undone.');
+        if (userConfirmed) {
             pages = [];
             savePages();
             renderPages();
         }
-        toggleDropdown();
+        // Assuming toggleDropdown was for a menu that might contain this,
+        // if it's a general dropdown, it might still be relevant.
+        // If not, this line can be removed.
+        const dropdown = document.getElementById('dropdown');
+        if (dropdown && dropdown.classList.contains('show')) {
+            toggleDropdown();
+        }
     }
 
     function selectTemplate(type) {
@@ -878,7 +881,7 @@
                         duration: 2
                     },
                     {
-                        id: Date.now() + 1,
+                        id: Date.now() + 1, // Ensure unique IDs
                         text: 'YOUR\nNAME',
                         fontFamily: 'Arial Black, sans-serif',
                         textColor: '#ffffff',
@@ -1138,7 +1141,6 @@
         document.getElementById('dropdown').classList.toggle('show');
     }
 
-    // Close dropdown when clicking outside
     window.onclick = function(event) {
         if (!event.target.matches('.btn-split-dropdown')) {
             const dropdown = document.getElementById('dropdown');
@@ -1146,6 +1148,34 @@
                 dropdown.classList.remove('show');
             }
         }
+        // Close modals if clicking outside their content
+        if (event.target.classList.contains('modal')) {
+            event.target.classList.remove('show');
+        }
+    }
+
+    function getDeviceLandscapeAspectRatio() {
+        const width = Math.max(window.screen.width, window.screen.height);
+        const height = Math.min(window.screen.width, window.screen.height);
+        return width / height;
+    }
+
+    function updatePreviewAspectRatio() {
+        const aspectRatio = getDeviceLandscapeAspectRatio();
+
+        // Create or update the dynamic style
+        let dynamicStyle = document.getElementById('dynamic-aspect-ratio');
+        if (!dynamicStyle) {
+            dynamicStyle = document.createElement('style');
+            dynamicStyle.id = 'dynamic-aspect-ratio';
+            document.head.appendChild(dynamicStyle);
+        }
+
+        dynamicStyle.textContent = `
+        .page-item {
+            aspect-ratio: ${aspectRatio};
+        }
+    `;
     }
 
     function renderPages() {
@@ -1180,20 +1210,22 @@
 
         return `
             <div class="page-item" data-page-id="${page.id}">
-                <div class="page-order-controls">
-                    <button class="order-btn" onclick="movePageUp(${page.id})" ${isFirst ? 'disabled' : ''} title="Move Up">▲</button>
-                    <button class="order-btn" onclick="movePageDown(${page.id})" ${isLast ? 'disabled' : ''} title="Move Down">▼</button>
-                </div>
                 <div class="page-preview" style="font-family: ${page.fontFamily}; color: ${page.textColor}; background: ${page.backgroundColor};">
-                    <textarea class="page-text" data-page-id="${page.id}" placeholder="Enter text..." spellcheck="false">${page.text}</textarea>
+                    <div class="page-text" data-page-id="${page.id}" contenteditable="true" spellcheck="false">${page.text}</div>
                     <div class="page-controls collapsed" id="controls-${page.id}">
-                        <div class="control-btn" onclick="openModal('fontModal', ${page.id})" title="Font">A</div>
-                        <div class="control-btn" onclick="openModal('animationModal', ${page.id})" title="Animation">⚡</div>
-                        <div class="control-btn" onclick="openModal('colorModal', ${page.id})" title="Colors">🎨</div>
-                        <div class="control-btn" onclick="openModal('durationModal', ${page.id})" title="Duration">⏳</div>
-                        <div class="control-btn" onclick="duplicatePage(${page.id})" title="Duplicate">⧉</div>
-                        <div class="control-btn warning" onclick="deletePage(${page.id})" title="Delete">🗑️</div>
-                        <div class="control-btn toggle-btn" onclick="toggleControls(${page.id})" title="Controls">…</div>
+                        <button class="control-btn" onclick="openModal('fontModal', ${page.id})" title="Font">A</button>
+                        <button class="control-btn" onclick="openModal('animationModal', ${page.id})" title="Animation">⚡</button>
+                        <button class="control-btn" onclick="openModal('colorModal', ${page.id})" title="Colors">🎨</button>
+                        <button class="control-btn" onclick="openModal('durationModal', ${page.id})" title="Duration">⏳</button>
+                        
+                        <div class="control-separator"></div>
+                        <button class="control-btn order-btn" onclick="movePageUp(${page.id})" ${isFirst ? 'disabled' : ''} title="Move Up">▲</button>
+                        <button class="control-btn order-btn" onclick="movePageDown(${page.id})" ${isLast ? 'disabled' : ''} title="Move Down">▼</button>
+                        <div class="control-separator"></div>
+                        
+                        <button class="control-btn" onclick="duplicatePage(${page.id})" title="Duplicate">⧉</button>
+                        <button class="control-btn warning" onclick="deletePage(${page.id})" title="Delete">🗑️</button>
+                        <button class="control-btn toggle-btn" onclick="toggleControls(${page.id})" title="Controls">⋯</button>
                     </div>
                 </div>
             </div>
@@ -1207,24 +1239,31 @@
         container.addEventListener('input', function(e) {
             if (e.target.classList.contains('page-text')) {
                 const pageId = parseInt(e.target.getAttribute('data-page-id'));
-                updatePage(pageId, 'text', e.target.value);
+                updatePage(pageId, 'text', e.target.innerText); // Using innerText for contenteditable
                 adjustTextSize(e.target);
             }
         });
-
-        // Adjust text size for all textareas
-        document.querySelectorAll('.page-text').forEach(adjustTextSize);
+        // Adjust text size for all textareas on initial load and re-render
+        document.querySelectorAll('.page-text').forEach(textarea => {
+            adjustTextSize(textarea);
+            // Also re-attach blur listener if needed for saving, though input covers most cases
+            textarea.addEventListener('blur', function(e) {
+                const pageId = parseInt(e.target.getAttribute('data-page-id'));
+                // Make sure to save the final text on blur, as 'input' might not catch all changes (e.g., paste)
+                updatePage(pageId, 'text', e.target.innerText);
+            });
+        });
     }
 
-    // Handle orientation changes and window resizes
     function handleResize() {
+        updatePreviewAspectRatio();
+
         // Only re-adjust preview text if we're in edit mode
         if (!isPlaying) {
             document.querySelectorAll('.page-text').forEach(adjustTextSize);
         }
     }
 
-    // Listen for orientation changes and window resizes
     window.addEventListener('resize', handleResize);
     window.addEventListener('orientationchange', function() {
         // Small delay to ensure the viewport has updated
@@ -1232,20 +1271,18 @@
     });
 
     function adjustTextSize(textarea) {
-        const container = textarea.parentElement;
-        const text = textarea.value || textarea.placeholder;
+        const container = textarea.parentElement; // The .page-preview div
+        if (!container) return;
+        const text = textarea.innerText;
 
-        // Use the same algorithm as display mode for consistency
         const fontSize = calculatePreviewFontSize(text, container);
         textarea.style.fontSize = fontSize + 'px';
     }
 
     function calculatePreviewFontSize(text, container) {
-        // Use the same aggressive sizing as display mode
-        const maxWidth = container.clientWidth * 0.9; // 5% padding on each side
+        const maxWidth = container.clientWidth * 0.9;
         const maxHeight = container.clientHeight * 0.9;
 
-        // Account for animation scaling with same buffer as display
         const safeMaxWidth = maxWidth / 1.05;
         const safeMaxHeight = maxHeight / 1.05;
 
@@ -1253,28 +1290,302 @@
         const longestLine = lines.reduce((longest, line) =>
             line.length > longest.length ? line : longest, '');
 
+        if (longestLine.length === 0 && lines.length === 1) { // Handle empty or single empty line
+            return Math.min(safeMaxHeight / 1.2, 60); // Default size for empty
+        }
+
+
         let fontSize = Math.min(
-            safeMaxWidth / (longestLine.length * 0.65), // Same as display
-            safeMaxHeight / (lines.length * 1.2) // Same as display
+            safeMaxWidth / (longestLine.length * 0.65 || 1), // Avoid division by zero
+            safeMaxHeight / (lines.length * 1.2 || 1) // Avoid division by zero
         );
 
-        // Create test element to measure actual size (same as display)
         const testElement = document.createElement('div');
         testElement.style.position = 'absolute';
         testElement.style.visibility = 'hidden';
+        testElement.style.pointerEvents = 'none'; // Ensure it doesn't interfere with clicks
         testElement.style.fontSize = fontSize + 'px';
         testElement.style.lineHeight = '1.1';
         testElement.style.whiteSpace = 'pre-wrap';
         testElement.style.wordWrap = 'break-word';
-        testElement.style.fontFamily = container.style.fontFamily;
-        testElement.style.fontWeight = '900';
+        testElement.style.fontFamily = getComputedStyle(container).fontFamily; // Use computed style
+        testElement.style.fontWeight = getComputedStyle(container).fontWeight; // Use computed style
         testElement.style.textAlign = 'center';
-        testElement.style.maxWidth = safeMaxWidth + 'px';
+        testElement.style.maxWidth = safeMaxWidth + 'px'; // Max width for test element
         testElement.textContent = text;
 
         document.body.appendChild(testElement);
 
-        // Fine-tune size more aggressively (same as display)
+        // Fine-tune size
+        while (testElement.offsetWidth < safeMaxWidth * 0.8 &&
+        testElement.offsetHeight < safeMaxHeight * 0.8 &&
+        fontSize < 800) { // Max font size cap
+            fontSize *= 1.06;
+            testElement.style.fontSize = fontSize + 'px';
+        }
+
+        while ((testElement.offsetWidth > safeMaxWidth ||
+            testElement.offsetHeight > safeMaxHeight) &&
+        fontSize > 16) { // Min font size cap
+            fontSize *= 0.96;
+            testElement.style.fontSize = fontSize + 'px';
+        }
+
+        document.body.removeChild(testElement);
+        return Math.max(fontSize, 16); // Ensure minimum font size
+    }
+
+    function toggleControls(pageId) {
+        const controls = document.getElementById(`controls-${pageId}`);
+        controls.classList.toggle('collapsed');
+    }
+
+    function movePageUp(pageId) {
+        const index = pages.findIndex(p => p.id === pageId);
+        if (index > 0) {
+            [pages[index], pages[index - 1]] = [pages[index - 1], pages[index]];
+            savePages();
+            renderPages(); // Re-render to update visual order and button states
+        }
+    }
+
+    function movePageDown(pageId) {
+        const index = pages.findIndex(p => p.id === pageId);
+        if (index < pages.length - 1) {
+            [pages[index], pages[index + 1]] = [pages[index + 1], pages[index]];
+            savePages();
+            renderPages(); // Re-render to update visual order and button states
+        }
+    }
+
+    function updatePage(id, field, value) {
+        const page = pages.find(p => p.id === id);
+        if (page) {
+            page[field] = value;
+            savePages();
+            // Only re-render fully if it's not a text update,
+            // as text updates are handled by contenteditable and adjustTextSize.
+            if (field !== 'text') {
+                renderPages();
+            } else {
+                // If it IS a text update, ensure the preview reflects it if not already handled
+                const pagePreviewDiv = document.querySelector(`.page-item[data-page-id="${id}"] .page-preview`);
+                if (pagePreviewDiv) {
+                    // This might be redundant if adjustTextSize already updates, but good for safety
+                    // No, this is not needed here as contenteditable handles the visual text.
+                }
+            }
+        }
+    }
+
+    function openModal(modalId, pageId) {
+        currentPageId = pageId;
+        const modal = document.getElementById(modalId);
+        modal.classList.add('show');
+        updateModalSelections(modalId, pageId);
+    }
+
+    function closeModal(modalId) {
+        const modal = document.getElementById(modalId);
+        if (modal) {
+            modal.classList.remove('show');
+        }
+    }
+
+    function updateModalSelections(modalId, pageId) {
+        const page = pages.find(p => p.id === pageId);
+        if (!page) return;
+
+        const modalElement = document.getElementById(modalId);
+        if (!modalElement) return;
+
+        // Clear previous selections within this specific modal
+        modalElement.querySelectorAll('.selected').forEach(el => {
+            el.classList.remove('selected');
+        });
+
+        // Set current selection
+        if (modalId === 'fontModal') {
+            modalElement.querySelector(`#fontOptions [data-font="${page.fontFamily}"]`)?.classList.add('selected');
+        } else if (modalId === 'animationModal') {
+            modalElement.querySelector(`#animationOptions [data-animation="${page.animation}"]`)?.classList.add('selected');
+        } else if (modalId === 'colorModal') {
+            modalElement.querySelector(`#textColorPalette [data-color="${page.textColor}"]`)?.classList.add('selected');
+            modalElement.querySelector(`#backgroundColorPalette [data-color="${page.backgroundColor}"]`)?.classList.add('selected');
+        } else if (modalId === 'durationModal') {
+            modalElement.querySelector(`#durationOptions [data-duration="${page.duration}"]`)?.classList.add('selected');
+        }
+    }
+
+    document.addEventListener('click', function(e) {
+        const target = e.target;
+
+        if (target.hasAttribute('data-font')) {
+            updatePage(currentPageId, 'fontFamily', target.getAttribute('data-font'));
+            closeModal('fontModal');
+        } else if (target.hasAttribute('data-animation')) {
+            updatePage(currentPageId, 'animation', target.getAttribute('data-animation'));
+            closeModal('animationModal');
+        } else if (target.hasAttribute('data-color')) {
+            const colorType = target.getAttribute('data-type');
+            if (colorType === 'text') {
+                updatePage(currentPageId, 'textColor', target.getAttribute('data-color'));
+            } else if (colorType === 'background') {
+                updatePage(currentPageId, 'backgroundColor', target.getAttribute('data-color'));
+            }
+            // Re-update selections in color modal without closing
+            if (currentPageId) updateModalSelections('colorModal', currentPageId);
+        } else if (target.hasAttribute('data-duration')) {
+            updatePage(currentPageId, 'duration', parseFloat(target.getAttribute('data-duration')));
+            closeModal('durationModal');
+        }
+    });
+
+    async function startDisplay() {
+        if (pages.length === 0) {
+            // Replace alert with a custom, non-blocking message if possible
+            console.warn('Add some pages first!');
+            // Example: show a temporary message on the UI instead of alert
+            const controlsContainer = document.querySelector('.controls');
+            let msgEl = document.getElementById('tempMessage');
+            if (!msgEl) {
+                msgEl = document.createElement('p');
+                msgEl.id = 'tempMessage';
+                msgEl.style.color = 'red';
+                msgEl.style.marginLeft = '10px';
+                controlsContainer.appendChild(msgEl);
+            }
+            msgEl.textContent = 'Add some pages first!';
+            setTimeout(() => msgEl.remove(), 3000);
+            return;
+        }
+
+        currentPageIndex = 0;
+        isPlaying = true;
+
+        document.getElementById('editMode').style.display = 'none';
+
+        const displayContainer = document.createElement('div');
+        displayContainer.className = 'display-mode';
+        displayContainer.id = 'displayContainer';
+
+        const stopButton = document.createElement('button');
+        stopButton.className = 'stop-btn';
+        stopButton.innerHTML = '×';
+        stopButton.onclick = stopDisplay;
+        displayContainer.appendChild(stopButton);
+
+        const textContainer = document.createElement('div');
+        textContainer.className = 'display-text';
+        textContainer.id = 'displayText';
+        displayContainer.appendChild(textContainer);
+
+        document.body.appendChild(displayContainer);
+
+        try {
+            if (document.documentElement.requestFullscreen) { // Check on documentElement
+                await document.documentElement.requestFullscreen();
+            } else if (document.documentElement.mozRequestFullScreen) { /* Firefox */
+                await document.documentElement.mozRequestFullScreen();
+            } else if (document.documentElement.webkitRequestFullscreen) { /* Chrome, Safari & Opera */
+                await document.documentElement.webkitRequestFullscreen();
+            } else if (document.documentElement.msRequestFullscreen) { /* IE/Edge */
+                await document.documentElement.msRequestFullscreen();
+            }
+        } catch (err) {
+            console.log('Fullscreen not available or denied:', err);
+        }
+
+        try {
+            if (screen.orientation && screen.orientation.lock) {
+                await screen.orientation.lock('landscape-primary');
+                await new Promise(resolve => setTimeout(resolve, 300)); // Give time for orientation
+            }
+        } catch (err) {
+            console.log('Orientation lock not available or failed:', err);
+        }
+
+        showPage(currentPageIndex); // Start with the first page
+    }
+
+    function showPage(index) {
+        if (!isPlaying) return; // Stop if not playing
+
+        currentPageIndex = index; // Update current page index
+
+        if (currentPageIndex >= pages.length) {
+            currentPageIndex = 0; // Loop back to start
+        }
+        if (pages.length === 0) { // Should be caught by startDisplay, but as a safeguard
+            stopDisplay();
+            return;
+        }
+
+
+        const page = pages[currentPageIndex];
+        const displayText = document.getElementById('displayText');
+        if (!displayText) { // Safety check if display mode was exited abruptly
+            stopDisplay();
+            return;
+        }
+
+
+        displayText.className = 'display-text'; // Reset classes
+
+        displayText.style.fontFamily = page.fontFamily;
+        displayText.style.color = page.textColor;
+        displayText.style.backgroundColor = page.backgroundColor; // Apply background color
+
+        displayText.textContent = page.text;
+        const fontSize = calculateDisplayFontSize(page.text, displayText);
+        displayText.style.fontSize = fontSize + 'px';
+
+        if (page.animation !== 'instant') {
+            displayText.classList.add('anim-' + page.animation);
+        }
+
+        clearTimeout(displayInterval);
+        displayInterval = setTimeout(() => {
+            showPage(currentPageIndex + 1); // Show next page
+        }, page.duration * 1000);
+    }
+
+    function calculateDisplayFontSize(text, container) {
+        const maxWidth = container.clientWidth * 0.95;
+        const maxHeight = container.clientHeight * 0.95;
+
+        const safeMaxWidth = maxWidth / 1.05;
+        const safeMaxHeight = maxHeight / 1.05;
+
+        const lines = text.split('\n');
+        const longestLine = lines.reduce((longest, line) =>
+            line.length > longest.length ? line : longest, '');
+
+        if (longestLine.length === 0 && lines.length === 1) {
+            return Math.min(safeMaxHeight / 1.2, 100); // Default for empty
+        }
+
+        let fontSize = Math.min(
+            safeMaxWidth / (longestLine.length * 0.65 || 1),
+            safeMaxHeight / (lines.length * 1.2 || 1)
+        );
+
+        const testElement = document.createElement('div');
+        testElement.style.position = 'absolute';
+        testElement.style.visibility = 'hidden';
+        testElement.style.pointerEvents = 'none';
+        testElement.style.fontSize = fontSize + 'px';
+        testElement.style.lineHeight = '1.1';
+        testElement.style.whiteSpace = 'pre-wrap';
+        testElement.style.wordWrap = 'break-word';
+        // Ensure fontFamily and fontWeight are correctly inherited or set for measurement
+        testElement.style.fontFamily = getComputedStyle(container).fontFamily;
+        testElement.style.fontWeight = getComputedStyle(container).fontWeight;
+        testElement.style.textAlign = 'center';
+        testElement.textContent = text;
+
+        document.body.appendChild(testElement);
+
         while (testElement.offsetWidth < safeMaxWidth * 0.8 &&
         testElement.offsetHeight < safeMaxHeight * 0.8 &&
         fontSize < 800) {
@@ -1293,253 +1604,10 @@
         return Math.max(fontSize, 16);
     }
 
-    function toggleControls(pageId) {
-        const controls = document.getElementById(`controls-${pageId}`);
-        controls.classList.toggle('collapsed');
-    }
-
-    function movePageUp(pageId) {
-        const index = pages.findIndex(p => p.id === pageId);
-        if (index > 0) {
-            [pages[index], pages[index - 1]] = [pages[index - 1], pages[index]];
-            savePages();
-            renderPages();
-        }
-    }
-
-    function movePageDown(pageId) {
-        const index = pages.findIndex(p => p.id === pageId);
-        if (index < pages.length - 1) {
-            [pages[index], pages[index + 1]] = [pages[index + 1], pages[index]];
-            savePages();
-            renderPages();
-        }
-    }
-
-    function updatePage(id, field, value) {
-        const page = pages.find(p => p.id === id);
-        if (page) {
-            page[field] = value;
-            savePages();
-            if (field !== 'text') {
-                renderPages();
-            }
-        }
-    }
-
-    function openModal(modalId, pageId) {
-        currentPageId = pageId;
-        const modal = document.getElementById(modalId);
-        modal.classList.add('show');
-
-        updateModalSelections(modalId, pageId);
-    }
-
-    function closeModal(modalId) {
-        document.getElementById(modalId).classList.remove('show');
-    }
-
-    function updateModalSelections(modalId, pageId) {
-        const page = pages.find(p => p.id === pageId);
-        if (!page) return;
-
-        // Clear previous selections
-        document.querySelectorAll(`#${modalId} .selected`).forEach(el => {
-            el.classList.remove('selected');
-        });
-
-        // Set current selection
-        if (modalId === 'fontModal') {
-            document.querySelector(`#fontOptions [data-font="${page.fontFamily}"]`)?.classList.add('selected');
-        } else if (modalId === 'animationModal') {
-            document.querySelector(`#animationOptions [data-animation="${page.animation}"]`)?.classList.add('selected');
-        } else if (modalId === 'colorModal') {
-            document.querySelector(`#textColorPalette [data-color="${page.textColor}"]`)?.classList.add('selected');
-            document.querySelector(`#backgroundColorPalette [data-color="${page.backgroundColor}"]`)?.classList.add('selected');
-        } else if (modalId === 'durationModal') {
-            document.querySelector(`#durationOptions [data-duration="${page.duration}"]`)?.classList.add('selected');
-        }
-    }
-
-    // Modal option click handlers
-    document.addEventListener('click', function(e) {
-        // Close modals when clicking outside
-        if (e.target.classList.contains('modal')) {
-            e.target.classList.remove('show');
-            return;
-        }
-
-        if (e.target.hasAttribute('data-font')) {
-            updatePage(currentPageId, 'fontFamily', e.target.getAttribute('data-font'));
-            closeModal('fontModal');
-        } else if (e.target.hasAttribute('data-animation')) {
-            updatePage(currentPageId, 'animation', e.target.getAttribute('data-animation'));
-            closeModal('animationModal');
-        } else if (e.target.hasAttribute('data-color')) {
-            const colorType = e.target.getAttribute('data-type');
-            if (colorType === 'text') {
-                updatePage(currentPageId, 'textColor', e.target.getAttribute('data-color'));
-            } else if (colorType === 'background') {
-                updatePage(currentPageId, 'backgroundColor', e.target.getAttribute('data-color'));
-            }
-            // Don't close color modal - let user adjust both colors if needed
-        } else if (e.target.hasAttribute('data-duration')) {
-            updatePage(currentPageId, 'duration', parseFloat(e.target.getAttribute('data-duration')));
-            closeModal('durationModal');
-        }
-    });
-
-    async function startDisplay() {
-        if (pages.length === 0) {
-            alert('Add some pages first!');
-            return;
-        }
-
-        currentPageIndex = 0;
-        isPlaying = true;
-
-        // Hide edit mode
-        document.getElementById('editMode').style.display = 'none';
-
-        // Create display container
-        const displayContainer = document.createElement('div');
-        displayContainer.className = 'display-mode';
-        displayContainer.id = 'displayContainer';
-
-        // Add stop button
-        const stopButton = document.createElement('button');
-        stopButton.className = 'stop-btn';
-        stopButton.innerHTML = '×';
-        stopButton.onclick = stopDisplay;
-        displayContainer.appendChild(stopButton);
-
-        // Add text container
-        const textContainer = document.createElement('div');
-        textContainer.className = 'display-text';
-        textContainer.id = 'displayText';
-        displayContainer.appendChild(textContainer);
-
-        document.body.appendChild(displayContainer);
-
-        // Try to enter fullscreen first
-        try {
-            if (displayContainer.requestFullscreen) {
-                await displayContainer.requestFullscreen();
-            }
-        } catch (err) {
-            console.log('Fullscreen not available:', err);
-        }
-
-        // Try to lock orientation to landscape on mobile
-        try {
-            if (screen.orientation && screen.orientation.lock) {
-                await screen.orientation.lock('landscape');
-                // Wait a bit longer for orientation to fully apply
-                await new Promise(resolve => setTimeout(resolve, 300));
-            }
-        } catch (err) {
-            console.log('Orientation lock not available or failed:', err);
-            // Continue anyway - not critical
-        }
-
-        // Start showing pages
-        showPage(0);
-    }
-
-    function showPage(index) {
-        if (!isPlaying || index >= pages.length) {
-            if (isPlaying) {
-                // Loop back to start
-                showPage(0);
-            }
-            return;
-        }
-
-        const page = pages[index];
-        const displayText = document.getElementById('displayText');
-
-        // Clear previous classes
-        displayText.className = 'display-text';
-
-        // Set page properties
-        displayText.style.fontFamily = page.fontFamily;
-        displayText.style.color = page.textColor;
-        displayText.style.background = page.backgroundColor;
-
-        // Calculate and set font size with more conservative margins
-        displayText.textContent = page.text;
-        const fontSize = calculateDisplayFontSize(page.text, displayText);
-        displayText.style.fontSize = fontSize + 'px';
-
-        // Add animation
-        if (page.animation !== 'instant') {
-            displayText.classList.add('anim-' + page.animation);
-        }
-
-        // Schedule next page
-        clearTimeout(displayInterval);
-        displayInterval = setTimeout(() => {
-            showPage(index + 1);
-        }, page.duration * 1000);
-    }
-
-    function calculateDisplayFontSize(text, container) {
-        // More aggressive sizing - reduce margins to make text as big as possible
-        const maxWidth = container.clientWidth * 0.95; // Increased from 0.85
-        const maxHeight = container.clientHeight * 0.95; // Increased from 0.85
-
-        // Account for animation scaling with smaller buffer
-        const safeMaxWidth = maxWidth / 1.05; // Reduced from 1.1
-        const safeMaxHeight = maxHeight / 1.05;
-
-        const lines = text.split('\n');
-        const longestLine = lines.reduce((longest, line) =>
-            line.length > longest.length ? line : longest, '');
-
-        let fontSize = Math.min(
-            safeMaxWidth / (longestLine.length * 0.65), // Slightly more aggressive
-            safeMaxHeight / (lines.length * 1.2)
-        );
-
-        // Create test element to measure actual size
-        const testElement = document.createElement('div');
-        testElement.style.position = 'absolute';
-        testElement.style.visibility = 'hidden';
-        testElement.style.fontSize = fontSize + 'px';
-        testElement.style.lineHeight = '1.1';
-        testElement.style.whiteSpace = 'pre-wrap';
-        testElement.style.wordWrap = 'break-word';
-        testElement.style.fontFamily = container.style.fontFamily;
-        testElement.style.fontWeight = '900';
-        testElement.style.textAlign = 'center';
-        testElement.textContent = text;
-
-        document.body.appendChild(testElement);
-
-        // Fine-tune size more aggressively
-        while (testElement.offsetWidth < safeMaxWidth * 0.8 &&
-        testElement.offsetHeight < safeMaxHeight * 0.8 &&
-        fontSize < 800) {
-            fontSize *= 1.06; // Slightly larger increments
-            testElement.style.fontSize = fontSize + 'px';
-        }
-
-        while ((testElement.offsetWidth > safeMaxWidth ||
-            testElement.offsetHeight > safeMaxHeight) &&
-        fontSize > 16) {
-            fontSize *= 0.96; // Smaller decrements
-            testElement.style.fontSize = fontSize + 'px';
-        }
-
-        document.body.removeChild(testElement);
-        return Math.max(fontSize, 16);
-    }
-
     function stopDisplay() {
         isPlaying = false;
         clearTimeout(displayInterval);
 
-        // Unlock orientation
         try {
             if (screen.orientation && screen.orientation.unlock) {
                 screen.orientation.unlock();
@@ -1548,61 +1616,68 @@
             console.log('Orientation unlock failed:', err);
         }
 
-        // Exit fullscreen
-        if (document.exitFullscreen) {
-            document.exitFullscreen();
+        if (document.fullscreenElement) { // Check if in fullscreen
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if (document.mozCancelFullScreen) { /* Firefox */
+                document.mozCancelFullScreen();
+            } else if (document.webkitExitFullscreen) { /* Chrome, Safari & Opera */
+                document.webkitExitFullscreen();
+            } else if (document.msExitFullscreen) { /* IE/Edge */
+                document.msExitFullscreen();
+            }
         }
 
-        // Remove display container
+
         const displayContainer = document.getElementById('displayContainer');
         if (displayContainer) {
             displayContainer.remove();
         }
 
-        // Show edit mode
         document.getElementById('editMode').style.display = 'block';
 
-        // Re-adjust preview text sizes after returning to edit mode
-        setTimeout(() => {
+        setTimeout(() => { // Ensure DOM is updated before recalculating
+            updatePreviewAspectRatio(); // Update aspect ratio for previews
             document.querySelectorAll('.page-text').forEach(adjustTextSize);
         }, 100);
     }
 
-    // Keyboard shortcuts
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') {
             if (isPlaying) {
                 stopDisplay();
             } else {
-                // Close any open modals
                 document.querySelectorAll('.modal.show').forEach(modal => {
                     modal.classList.remove('show');
                 });
             }
         }
     });
+    document.addEventListener('fullscreenchange', handleFullscreenChange);
+    document.addEventListener('mozfullscreenchange', handleFullscreenChange); // Firefox
+    document.addEventListener('webkitfullscreenchange', handleFullscreenChange); // Chrome, Safari, Opera
+    document.addEventListener('msfullscreenchange', handleFullscreenChange); // IE/Edge
 
-    // Handle fullscreen change
-    document.addEventListener('fullscreenchange', function() {
-        if (!document.fullscreenElement && isPlaying) {
+    function handleFullscreenChange() {
+        const isFullscreen = !!(document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement || document.msFullscreenElement);
+        if (!isFullscreen && isPlaying) {
+            // If fullscreen was exited while playing (e.g., by user pressing Esc), stop the display.
             stopDisplay();
         }
+    }
+
+    window.addEventListener('resize', function() {
+        if (isPlaying) {
+            const displayText = document.getElementById('displayText');
+            if (displayText && pages.length > 0 && pages[currentPageIndex]) { // Check if elements and page exist
+                const page = pages[currentPageIndex];
+                const fontSize = calculateDisplayFontSize(page.text, displayText);
+                displayText.style.fontSize = fontSize + 'px';
+            }
+        }
+        // The general handleResize already covers edit mode.
     });
 
-    // Handle orientation change during play (recalculate text size)
-    document.addEventListener('orientationchange', function() {
-        if (isPlaying) {
-            setTimeout(() => {
-                const displayText = document.getElementById('displayText');
-                if (displayText && pages[currentPageIndex]) {
-                    const page = pages[currentPageIndex];
-                    displayText.textContent = page.text;
-                    const fontSize = calculateDisplayFontSize(page.text, displayText);
-                    displayText.style.fontSize = fontSize + 'px';
-                }
-            }, 100);
-        }
-    });
 </script>
 </body>
 </html>
