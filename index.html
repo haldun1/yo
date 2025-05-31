@@ -1280,18 +1280,35 @@
         container.addEventListener('input', function(e) {
             if (e.target.classList.contains('page-text')) {
                 const pageId = parseInt(e.target.getAttribute('data-page-id'));
-                updatePage(pageId, 'text', e.target.innerText); // Using innerText for contenteditable
+                // Convert HTML content to plain text with line breaks
+                const text = e.target.innerHTML
+                    .replace(/<br\s*\/?>/gi, '\n')
+                    .replace(/<div>/gi, '\n')
+                    .replace(/<\/div>/gi, '')
+                    .replace(/<[^>]*>/g, ''); // Remove any other HTML tags
+                updatePage(pageId, 'text', text);
                 adjustTextSize(e.target);
             }
         });
+
+        container.addEventListener('keydown', function(e) {
+            if (e.target.classList.contains('page-text') && e.key === 'Enter') {
+                e.preventDefault();
+                document.execCommand('insertHTML', false, '<br>');
+            }
+        });
+
         // Adjust text size for all textareas on initial load and re-render
         document.querySelectorAll('.page-text').forEach(textarea => {
             adjustTextSize(textarea);
-            // Also re-attach blur listener if needed for saving, though input covers most cases
             textarea.addEventListener('blur', function(e) {
                 const pageId = parseInt(e.target.getAttribute('data-page-id'));
-                // Make sure to save the final text on blur, as 'input' might not catch all changes (e.g., paste)
-                updatePage(pageId, 'text', e.target.innerText);
+                const text = e.target.innerHTML
+                    .replace(/<br\s*\/?>/gi, '\n')
+                    .replace(/<div>/gi, '\n')
+                    .replace(/<\/div>/gi, '')
+                    .replace(/<[^>]*>/g, '');
+                updatePage(pageId, 'text', text);
             });
         });
     }
